@@ -117,6 +117,12 @@ class Titulaire {
         return $this;
     }
 
+///ajouter compte bancaire
+    public function ajouterCompteBancaire(CompteBancaire $_compteBancaire){
+        $this->_comptesBancaire[] = $_compteBancaire;
+        $result .=$_compteBancaire->afficherInfos()."<br>";
+    }
+
     ///*****toString*************** */
     public function __toString()
     {

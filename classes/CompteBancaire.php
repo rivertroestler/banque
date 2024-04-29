@@ -127,8 +127,10 @@ class CompteBancaire {
         $this->_soldeInitial -= $_solde;
         return "Le solde est débité de ".$_solde.$this->_deviseMonetaire."<br>"."Le solde actuel s'éléve à ".$this->_soldeInitial.$this->_deviseMonetaire."<br>";
     }
-
-
+//afficherInfos
+    public function afficherInfos(){
+        return $this->_titulaire."".$this->_libelle." ".$this->_soldeInitial.$this->_deviseMonetaire;
+    }
     //*********__toString */
     public function __toString()
     {
