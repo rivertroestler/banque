@@ -10,4 +10,8 @@ $titulaire = new Titulaire("Nom","Prenom","11-01-2000","Lyon");
 //Compte(s) Bancaire(s)
 $cb = new CompteBancaire("compte courant",100,"€",$titulaire);
 
+
+//tests
 echo $cb->debiter(100);
+echo $cb->crediter(100);
+
