@@ -14,21 +14,15 @@ class CompteBancaire {
         $this->_soldeInitial = $_soldeInitial;
         $this->_deviseMonetaire = $_deviseMonetaire;
         $this->_titulaire = $_titulaire;
+        $_titulaire->ajouterCompteBancaire($this);
     }
 
-    /**
-     * Get the value of _libelle
-     */ 
+//getter & setter _libelle
     public function get_libelle()
     {
         return $this->_libelle;
     }
 
-    /**
-     * Set the value of _libelle
-     *
-     * @return  self
-     */ 
     public function set_libelle($_libelle)
     {
         $this->_libelle = $_libelle;
@@ -36,19 +30,14 @@ class CompteBancaire {
         return $this;
     }
 
-    /**
-     * Get the value of _soldeInitial
-     */ 
+
+
+//getter & setter _soldeInitial
     public function get_soldeInitial()
     {
         return $this->_soldeInitial;
     }
 
-    /**
-     * Set the value of _soldeInitial
-     *
-     * @return  self
-     */ 
     public function set_soldeInitial($_soldeInitial)
     {
         $this->_soldeInitial = $_soldeInitial;
@@ -56,19 +45,15 @@ class CompteBancaire {
         return $this;
     }
 
-    /**
-     * Get the value of _deviseMonetaire
-     */ 
+
+
+    //getter & setters deviseMonetaire
     public function get_deviseMonetaire()
     {
         return $this->_deviseMonetaire;
     }
 
-    /**
-     * Set the value of _deviseMonetaire
-     *
-     * @return  self
-     */ 
+
     public function set_deviseMonetaire($_deviseMonetaire)
     {
         $this->_deviseMonetaire = $_deviseMonetaire;
@@ -76,38 +61,28 @@ class CompteBancaire {
         return $this;
     }
 
-    /**
-     * Get the value of _titulaire
-     */ 
+
+    //getter & setter titulaire
     public function get_titulaire()
     {
         return $this->_titulaire;
     }
 
-    /**
-     * Set the value of _titulaire
-     *
-     * @return  self
-     */ 
     public function set_titulaire($_titulaire)
     {
         $this->_titulaire = $_titulaire;
 
         return $this;
     }
-        /**
-     * Get the value of _solde
-     */ 
+
+
+    //getter & setter solde
     public function get_solde()
     {
         return $this->_solde;
     }
 
-    /**
-     * Set the value of _solde
-     *
-     * @return  self
-     */ 
+
     public function set_solde($_solde)
     {
         $this->_solde = $_solde;
@@ -117,19 +92,31 @@ class CompteBancaire {
 
 
     //******Méthodes personnalisées */
+
 // créditer()
     public function crediter($_solde){
         $this->_soldeInitial += $_solde;
         return "Le solde est crédité de ".$_solde.$this->_deviseMonetaire."<br>"."Le solde actuel s'éléve à ".$this->_soldeInitial.$this->_deviseMonetaire."<br>";
     }
+
+
+
 //debiter()
     public function debiter($_solde){
         $this->_soldeInitial -= $_solde;
         return "Le solde est débité de ".$_solde.$this->_deviseMonetaire."<br>"."Le solde actuel s'éléve à ".$this->_soldeInitial.$this->_deviseMonetaire."<br>";
     }
+
+
+//virement()
+      public function virement(CompteBancaire $destinataire, float $montant){
+        echo "un montant de ".$montant." ".$this->_deviseMonetaire." est envoyé vers le compte de ".$destinataire->get_titulaire()->get_nom()." ".$destinataire->get_titulaire()->get_prenom()."<br>";
+        $this->set_solde(-$montant);
+      }
+
 //afficherInfos
     public function afficherInfos(){
-        return $this->_titulaire."".$this->_libelle." ".$this->_soldeInitial.$this->_deviseMonetaire;
+        return $this->_titulaire." ".$this->_libelle."  ".$this->_soldeInitial.$this->_deviseMonetaire;
     }
     //*********__toString */
     public function __toString()
