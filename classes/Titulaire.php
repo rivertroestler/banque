@@ -5,7 +5,7 @@ class Titulaire {
     private string $_prenom;
     private DateTime $_dateNaissance;
     private string $_ville;
-    private array $_comptesBancaire;
+    private array $_comptesBancaires;
 
     public function __construct(string $_nom, string $_prenom, string $_dateNaissance, string $_ville)
     {
@@ -13,23 +13,16 @@ class Titulaire {
         $this->_prenom = $_prenom;
         $this->_dateNaissance = new DateTime($_dateNaissance);
         $this->_ville = $_ville;
-        $this->_comptesBancaire = [];
+        $this->_comptesBancaires = [];
     }
 
 
-    /**
-     * Get the value of _nom
-     */ 
+//getter & setter nom
     public function get_nom()
     {
         return $this->_nom;
     }
 
-    /**
-     * Set the value of _nom
-     *
-     * @return  self
-     */ 
     public function set_nom($_nom)
     {
         $this->_nom = $_nom;
@@ -37,19 +30,13 @@ class Titulaire {
         return $this;
     }
 
-    /**
-     * Get the value of _prenom
-     */ 
+ 
+  //getter &setter prenom
     public function get_prenom()
     {
         return $this->_prenom;
     }
 
-    /**
-     * Set the value of _prenom
-     *
-     * @return  self
-     */ 
     public function set_prenom($_prenom)
     {
         $this->_prenom = $_prenom;
@@ -57,19 +44,14 @@ class Titulaire {
         return $this;
     }
 
-    /**
-     * Get the value of _dateNaissance
-     */ 
+ 
+
+//getter & setter dateNaissance
     public function get_dateNaissance()
     {
         return $this->_dateNaissance;
     }
 
-    /**
-     * Set the value of _dateNaissance
-     *
-     * @return  self
-     */ 
     public function set_dateNaissance($_dateNaissance)
     {
         $this->_dateNaissance = $_dateNaissance;
@@ -77,19 +59,12 @@ class Titulaire {
         return $this;
     }
 
-    /**
-     * Get the value of _ville
-     */ 
+//getter & setter ville
     public function get_ville()
     {
         return $this->_ville;
     }
 
-    /**
-     * Set the value of _ville
-     *
-     * @return  self
-     */ 
     public function set_ville($_ville)
     {
         $this->_ville = $_ville;
@@ -97,32 +72,34 @@ class Titulaire {
         return $this;
     }
 
-    /**
-     * Get the value of _comptesBancaire
-     */ 
-    public function get_comptesBancaire()
+//getter & setter comptesBancaire
+    public function get_comptesBancaires()
     {
-        return $this->_comptesBancaire;
+        return $this->_comptesBancaires;
     }
 
-    /**
-     * Set the value of _comptesBancaire
-     *
-     * @return  self
-     */ 
-    public function set_comptesBancaire($_comptesBancaire)
+    public function set_comptesBancaires($_comptesBancaires)
     {
-        $this->_comptesBancaire = $_comptesBancaire;
-
-        return $this;
+       array_push($this->_comptesBancaires);
     }
 
-///ajouter compte bancaire
+///ajouterCompteBancaire
     public function ajouterCompteBancaire(CompteBancaire $_compteBancaire){
-        $this->_comptesBancaire[] = $_compteBancaire;
-        $result .=$_compteBancaire->afficherInfos()."<br>";
+      array_push($this->_comptesBancaires, $_compteBancaire);
     }
 
+
+//afficherInfos()
+    public function afficherInfos(){
+      $now = new Datetime();
+      $diff = $this->_dateNaissance->diff($now);
+      $result = $this->_nom." ".$this->_prenom." , né à ".$this->_ville." , agé de ".$diff->format("%y ans")."<br>";
+      $result .= "comptes du titulaire : <br>";
+      foreach ($this->_comptesBancaires as $_compteBancaire){
+        $result.= " - ".$_compteBancaire->get_libelle().": solde".$_compteBancaire->get_solde().$_compteBancaire->get_deviseMonetaire()."- Titulaire: ".$this->_nom." ".$this->_prenom." <br>";
+      }
+      
+    }
     ///*****toString*************** */
     public function __toString()
     {
