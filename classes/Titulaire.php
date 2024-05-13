@@ -93,11 +93,13 @@ class Titulaire {
     public function afficherInfos(){
       $now = new Datetime();
       $diff = $this->_dateNaissance->diff($now);
-      $result = $this->_nom." ".$this->_prenom." , né à ".$this->_ville." , agé de ".$diff->format("%y ans")."<br>";
+      $result = $this->_nom." ".$this->_prenom." , né à ".$this->_ville." , agé de ".$diff->format("%y ans")." <br>";
       $result .= "comptes du titulaire : <br>";
       foreach ($this->_comptesBancaires as $_compteBancaire){
         $result.= " - ".$_compteBancaire->get_libelle().": solde".$_compteBancaire->get_solde().$_compteBancaire->get_deviseMonetaire()."- Titulaire: ".$this->_nom." ".$this->_prenom." <br>";
       }
+
+      return $result;
       
     }
     ///*****toString*************** */
