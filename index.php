@@ -1,6 +1,5 @@
 <h1> Banques </h1>
 
-
 <?php
 
 spl_autoload_register(function($class_name){
@@ -35,5 +34,5 @@ echo "titulaire 1: ".$titulaire->afficherInfos()."<br>";
 echo "titulaire 2: ".$titulaire2->afficherInfos()."<br>";
 
 //afficherInfos() des comptes bancaires
-echo "compte 1: ".$cb->afficherInfos();
-echo "compte 2: ".$cb2->afficherInfos();
+echo "compte 1: ".$cb->afficherInfos()."<br>";
+echo "compte 2: ".$cb2->afficherInfos()."<br>";
